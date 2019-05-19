@@ -9,6 +9,9 @@ protected:
 	CMonthCalCtrl m_wndCalendar;
 	int m_nMyCalendarsY;
 	CImageList m_Images;
+	int nBorderSize;
+	int iconWidth;
+	int iconHeight;
 
 // ππ‘Ï
 public:

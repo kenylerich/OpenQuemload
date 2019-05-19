@@ -215,12 +215,14 @@ void CMainFrame::SetDockingWindowIcons(BOOL bHiColorIcons)
 
 BOOL CMainFrame::CreateOutlookBar(CMFCOutlookBar& bar, UINT uiID, CMFCShellTreeCtrl& tree, CCalendarBar& calendar, int nInitialWidth)
 {
-	bar.SetMode2003();
-
 	BOOL bNameValid;
 	CString strTemp;
+
+	bar.SetMode2003();
+
 	bNameValid = strTemp.LoadString(IDS_SHORTCUTS);
 	ASSERT(bNameValid);
+
 	if (FALSE == bar.Create(strTemp, this, CRect(0, 0, nInitialWidth, 32000), uiID, WS_CHILD | WS_VISIBLE | CBRS_LEFT))
 	{
 		return FALSE; // Î´ÄÜ´´½¨
