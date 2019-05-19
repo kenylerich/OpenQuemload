@@ -52,7 +52,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	// 设置用于绘制所有用户界面元素的视觉管理器
 	CMFCVisualManager::SetDefaultManager(RUNTIME_CLASS(CMFCVisualManagerVS2008));
 
-	if (!m_wndMenuBar.Create(this))
+	if (FALSE == m_wndMenuBar.Create(this))
 	{
 		TRACE0("未能创建菜单栏\n");
 		return -1;      // 未能创建
@@ -70,7 +70,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		TBSTYLE_FLAT, 
 		dwExStyle);
 
-	if (!bCreateEx || !bLoadToolBar)
+	if (FALSE == bCreateEx || FALSE == bLoadToolBar)
 	{
 		TRACE0("未能创建工具栏\n");
 		return -1;      // 未能创建
@@ -89,7 +89,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	// 允许用户定义的工具栏操作:
 	InitUserToolbars(NULL, uiFirstUserToolBarId, uiLastUserToolBarId);
 
-	if (!m_wndStatusBar.Create(this))
+	if (FALSE == m_wndStatusBar.Create(this))
 	{
 		TRACE0("未能创建状态栏\n");
 		return -1;      // 未能创建
@@ -124,7 +124,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	EnableAutoHidePanes(CBRS_ALIGN_RIGHT);
 
 	// 创建停靠窗口
-	if (!CreateDockingWindows())
+	if (FALSE == CreateDockingWindows())
 	{
 		TRACE0("未能创建停靠窗口\n");
 		return -1;
@@ -181,7 +181,7 @@ BOOL CMainFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 
 BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 {
-	if( !CFrameWndEx::PreCreateWindow(cs) )
+	if( FALSE == CFrameWndEx::PreCreateWindow(cs) )
 		return FALSE;
 	// TODO: 在此处通过修改
 	//  CREATESTRUCT cs 来修改窗口类或样式
@@ -221,7 +221,7 @@ BOOL CMainFrame::CreateOutlookBar(CMFCOutlookBar& bar, UINT uiID, CMFCShellTreeC
 	CString strTemp;
 	bNameValid = strTemp.LoadString(IDS_SHORTCUTS);
 	ASSERT(bNameValid);
-	if (!bar.Create(strTemp, this, CRect(0, 0, nInitialWidth, 32000), uiID, WS_CHILD | WS_VISIBLE | CBRS_LEFT))
+	if (FALSE == bar.Create(strTemp, this, CRect(0, 0, nInitialWidth, 32000), uiID, WS_CHILD | WS_VISIBLE | CBRS_LEFT))
 	{
 		return FALSE; // 未能创建
 	}
