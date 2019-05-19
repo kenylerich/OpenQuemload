@@ -7,9 +7,9 @@
 #include "afxdialogex.h"
 #include "OpenQemuLoad.h"
 #include "MainFrm.h"
-
 #include "OpenQemuLoadDoc.h"
 #include "OpenQemuLoadView.h"
+#include "AboutDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -128,36 +128,6 @@ BOOL COpenQemuLoadApp::InitInstance()
 
 // COpenQemuLoadApp 消息处理程序
 
-
-// 用于应用程序“关于”菜单项的 CAboutDlg 对话框
-
-class CAboutDlg : public CDialogEx
-{
-public:
-	CAboutDlg();
-
-// 对话框数据
-	enum { IDD = IDD_ABOUTBOX };
-
-protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 支持
-
-// 实现
-protected:
-	DECLARE_MESSAGE_MAP()
-};
-
-CAboutDlg::CAboutDlg() : CDialogEx(CAboutDlg::IDD)
-{
-}
-
-void CAboutDlg::DoDataExchange(CDataExchange* pDX)
-{
-	CDialogEx::DoDataExchange(pDX);
-}
-
-BEGIN_MESSAGE_MAP(CAboutDlg, CDialogEx)
-END_MESSAGE_MAP()
 
 // 用于运行对话框的应用程序命令
 void COpenQemuLoadApp::OnAppAbout()

@@ -1,17 +1,9 @@
-
-// MainFrm.h : CMainFrame 类的接口
-//
-
 #pragma once
 #include "PropertiesWnd.h"
 #include "CalendarBar.h"
 #include "Resource.h"
+#include "OutlookBar.h"
 
-class COutlookBar : public CMFCOutlookBar
-{
-	virtual BOOL AllowShowOnPaneMenu() const { return TRUE; }
-	virtual void GetPaneName(CString& strName) const { BOOL bNameValid = strName.LoadString(IDS_OUTLOOKBAR); ASSERT(bNameValid); if (!bNameValid) strName.Empty(); }
-};
 
 class CMainFrame : public CFrameWndEx
 {

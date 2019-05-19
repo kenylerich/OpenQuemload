@@ -64,7 +64,14 @@ void CCalendarBar::OnSize(UINT nType, int cx, int cy)
 
 	if (m_wndCalendar.GetSafeHwnd() != NULL)
 	{
-		m_wndCalendar.SetWindowPos(NULL, nBorderSize, nBorderSize, cx - 2 * nBorderSize, cy - 2 * nBorderSize - nMyCalendarsHeight - 10, SWP_NOZORDER | SWP_NOACTIVATE);
+		m_wndCalendar.SetWindowPos(
+			NULL, 
+			nBorderSize, 
+			nBorderSize, 
+			cx - 2 * nBorderSize, 
+			cy - 2 * nBorderSize - nMyCalendarsHeight - 10, 
+			SWP_NOZORDER | SWP_NOACTIVATE
+			);
 	}
 
 	m_nMyCalendarsY = cy - nMyCalendarsHeight;

@@ -1,10 +1,5 @@
-
-// MainFrm.cpp : CMainFrame 类的实现
-//
-
 #include "stdafx.h"
 #include "OpenQemuLoad.h"
-
 #include "MainFrm.h"
 
 #ifdef _DEBUG

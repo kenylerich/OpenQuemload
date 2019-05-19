@@ -1,4 +1,3 @@
-
 #pragma once
 
 /////////////////////////////////////////////////////////////////////////////
@@ -6,23 +5,17 @@
 
 class CCalendarBar : public CWnd
 {
-// 构造
-public:
-	CCalendarBar();
-
-// 特性
 protected:
 	CMonthCalCtrl m_wndCalendar;
 	int m_nMyCalendarsY;
 	CImageList m_Images;
 
-// 重写
+// 构造
 public:
-	virtual BOOL Create(const RECT& rect, CWnd* pParentWnd, UINT nID = (UINT)-1);
-
-// 实现
-public:
+	CCalendarBar();
 	virtual ~CCalendarBar();
+	virtual BOOL Create(const RECT& rect, CWnd* pParentWnd, UINT nID = (UINT)-1);
+	
 
 protected:
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
