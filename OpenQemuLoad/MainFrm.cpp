@@ -1,29 +1,15 @@
-
-// MainFrm.cpp : CMainFrame 类的实现
-//
-
 #include "stdafx.h"
 #include "OpenQemuLoad.h"
-
 #include "MainFrm.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
 
-// CMainFrame
-
-IMPLEMENT_DYNCREATE(CMainFrame, CFrameWndEx)
 
 const int  iMaxUserToolbars = 10;
 const UINT uiFirstUserToolBarId = AFX_IDW_CONTROLBAR_FIRST + 40;
 const UINT uiLastUserToolBarId = uiFirstUserToolBarId + iMaxUserToolbars - 1;
-
-BEGIN_MESSAGE_MAP(CMainFrame, CFrameWndEx)
-	ON_WM_CREATE()
-	ON_COMMAND(ID_VIEW_CUSTOMIZE, &CMainFrame::OnViewCustomize)
-	ON_REGISTERED_MESSAGE(AFX_WM_CREATETOOLBAR, &CMainFrame::OnToolbarCreateNew)
-END_MESSAGE_MAP()
 
 static UINT indicators[] =
 {
@@ -33,11 +19,17 @@ static UINT indicators[] =
 	ID_INDICATOR_SCRL,
 };
 
-// CMainFrame 构造/析构
+IMPLEMENT_DYNCREATE(CMainFrame, CFrameWndEx)
+
+BEGIN_MESSAGE_MAP(CMainFrame, CFrameWndEx)
+	ON_WM_CREATE()
+	ON_COMMAND(ID_VIEW_CUSTOMIZE, &CMainFrame::OnViewCustomize)
+	ON_REGISTERED_MESSAGE(AFX_WM_CREATETOOLBAR, &CMainFrame::OnToolbarCreateNew)
+END_MESSAGE_MAP()
+
 
 CMainFrame::CMainFrame()
 {
-	// TODO: 在此添加成员初始化代码
 }
 
 CMainFrame::~CMainFrame()
@@ -50,7 +42,13 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		return -1;
 
 	BOOL bNameValid;
-
+	UINT uiResID;
+	BOOL bLoadToolBar;
+	BOOL bCreateEx;
+	DWORD dwExStyle;
+	CString strToolBarName;
+	CString strCustomize;
+	
 	// 设置用于绘制所有用户界面元素的视觉管理器
 	CMFCVisualManager::SetDefaultManager(RUNTIME_CLASS(CMFCVisualManagerVS2008));
 
@@ -65,19 +63,25 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	// 防止菜单栏在激活时获得焦点
 	CMFCPopupMenu::SetForceMenuFocus(FALSE);
 
-	if (!m_wndToolBar.CreateEx(this, TBSTYLE_FLAT, WS_CHILD | WS_VISIBLE | CBRS_TOP | CBRS_GRIPPER | CBRS_TOOLTIPS | CBRS_FLYBY | CBRS_SIZE_DYNAMIC) ||
-		!m_wndToolBar.LoadToolBar(theApp.m_bHiColorIcons ? IDR_MAINFRAME_256 : IDR_MAINFRAME))
+	uiResID = theApp.m_bHiColorIcons ? IDR_MAINFRAME_256 : IDR_MAINFRAME;
+	bLoadToolBar = m_wndToolBar.LoadToolBar(uiResID);
+	dwExStyle = WS_CHILD | WS_VISIBLE | CBRS_TOP | CBRS_GRIPPER | CBRS_TOOLTIPS | CBRS_FLYBY | CBRS_SIZE_DYNAMIC;
+	bCreateEx = m_wndToolBar.CreateEx(this, 
+		TBSTYLE_FLAT, 
+		dwExStyle);
+
+	if (!bCreateEx || !bLoadToolBar)
 	{
 		TRACE0("未能创建工具栏\n");
 		return -1;      // 未能创建
 	}
 
-	CString strToolBarName;
+	
 	bNameValid = strToolBarName.LoadString(IDS_TOOLBAR_STANDARD);
 	ASSERT(bNameValid);
 	m_wndToolBar.SetWindowText(strToolBarName);
 
-	CString strCustomize;
+	
 	bNameValid = strCustomize.LoadString(IDS_TOOLBAR_CUSTOMIZE);
 	ASSERT(bNameValid);
 	m_wndToolBar.EnableCustomizeButton(TRUE, ID_VIEW_CUSTOMIZE, strCustomize);
@@ -90,8 +94,8 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		TRACE0("未能创建状态栏\n");
 		return -1;      // 未能创建
 	}
-	m_wndStatusBar.SetIndicators(indicators, sizeof(indicators)/sizeof(UINT));
 
+	m_wndStatusBar.SetIndicators(indicators, sizeof(indicators)/sizeof(UINT));
 	// TODO: 如果您不希望工具栏和菜单栏可停靠，请删除这五行
 	m_wndMenuBar.EnableDocking(CBRS_ALIGN_ANY);
 	m_wndToolBar.EnableDocking(CBRS_ALIGN_ANY);

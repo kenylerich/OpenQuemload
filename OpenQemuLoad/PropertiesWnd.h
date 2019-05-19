@@ -1,32 +1,9 @@
-
 #pragma once
 
-class CPropertiesToolBar : public CMFCToolBar
-{
-public:
-	virtual void OnUpdateCmdUI(CFrameWnd* /*pTarget*/, BOOL bDisableIfNoHndler)
-	{
-		CMFCToolBar::OnUpdateCmdUI((CFrameWnd*) GetOwner(), bDisableIfNoHndler);
-	}
-
-	virtual BOOL AllowShowOnList() const { return FALSE; }
-};
+#include "PropertiesToolBar.h"
 
 class CPropertiesWnd : public CDockablePane
 {
-// 构造
-public:
-	CPropertiesWnd();
-
-	void AdjustLayout();
-
-// 特性
-public:
-	void SetVSDotNetLook(BOOL bSet)
-	{
-		m_wndPropList.SetVSDotNetLook(bSet);
-		m_wndPropList.SetGroupNameFullWidth(bSet);
-	}
 
 protected:
 	CFont m_fntPropList;
@@ -34,9 +11,19 @@ protected:
 	CPropertiesToolBar m_wndToolBar;
 	CMFCPropertyGridCtrl m_wndPropList;
 
-// 实现
+// 构造
 public:
+	CPropertiesWnd();
 	virtual ~CPropertiesWnd();
+
+// 特性
+public:
+	void SetVSDotNetLook(BOOL bSet);
+	void AdjustLayout();
+
+protected:
+	void InitPropList();
+	void SetPropListFont();
 
 protected:
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
@@ -52,9 +39,6 @@ protected:
 	afx_msg void OnSetFocus(CWnd* pOldWnd);
 	afx_msg void OnSettingChange(UINT uFlags, LPCTSTR lpszSection);
 
-	DECLARE_MESSAGE_MAP()
-
-	void InitPropList();
-	void SetPropListFont();
+	DECLARE_MESSAGE_MAP()	
 };
 

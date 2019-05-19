@@ -1,9 +1,7 @@
-
 #include "stdafx.h"
 
 #include "PropertiesWnd.h"
 #include "Resource.h"
-#include "MainFrm.h"
 #include "OpenQemuLoad.h"
 
 #ifdef _DEBUG
@@ -40,6 +38,12 @@ END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
 // CResourceViewBar 消息处理程序
+
+void CPropertiesWnd::SetVSDotNetLook(BOOL bSet)
+{
+	m_wndPropList.SetVSDotNetLook(bSet);
+	m_wndPropList.SetGroupNameFullWidth(bSet);
+}
 
 void CPropertiesWnd::AdjustLayout()
 {
@@ -160,7 +164,7 @@ void CPropertiesWnd::InitPropList()
 	m_wndPropList.SetVSDotNetLook();
 	m_wndPropList.MarkModifiedProperties();
 
-	CMFCPropertyGridProperty* pGroup1 = new CMFCPropertyGridProperty(_T("外观"));
+	CMFCPropertyGridProperty* pGroup1 = new CMFCPropertyGridProperty(_T("VM属性"));
 
 	pGroup1->AddSubItem(new CMFCPropertyGridProperty(_T("三维外观"), (_variant_t) false, _T("指定窗口的字体不使用粗体，并且控件将使用三维边框")));
 

@@ -1,6 +1,3 @@
-
-// OpenQemuLoad.h : OpenQemuLoad 应用程序的主头文件
-//
 #pragma once
 
 #ifndef __AFXWIN_H__
@@ -10,27 +7,19 @@
 #include "resource.h"       // 主符号
 
 
-// COpenQemuLoadApp:
-// 有关此类的实现，请参阅 OpenQemuLoad.cpp
-//
-
 class COpenQemuLoadApp : public CWinAppEx
 {
 public:
-	COpenQemuLoadApp();
-
-
-// 重写
-public:
-	virtual BOOL InitInstance();
-
-// 实现
 	BOOL  m_bHiColorIcons;
 
+public:
+	COpenQemuLoadApp();
+	virtual BOOL InitInstance();
 	virtual void PreLoadState();
 	virtual void LoadCustomState();
 	virtual void SaveCustomState();
 
+public:
 	afx_msg void OnAppAbout();
 	DECLARE_MESSAGE_MAP()
 };

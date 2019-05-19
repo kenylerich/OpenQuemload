@@ -1,7 +1,3 @@
-
-// OpenQemuLoadDoc.cpp : COpenQemuLoadDoc 类的实现
-//
-
 #include "stdafx.h"
 // SHARED_HANDLERS 可以在实现预览、缩略图和搜索筛选器句柄的
 // ATL 项目中进行定义，并允许与该项目共享文档代码。
@@ -48,10 +44,6 @@ BOOL COpenQemuLoadDoc::OnNewDocument()
 	return TRUE;
 }
 
-
-
-
-// COpenQemuLoadDoc 序列化
 
 void COpenQemuLoadDoc::Serialize(CArchive& ar)
 {
@@ -132,6 +124,3 @@ void COpenQemuLoadDoc::Dump(CDumpContext& dc) const
 	CDocument::Dump(dc);
 }
 #endif //_DEBUG
-
-
-// COpenQemuLoadDoc 命令

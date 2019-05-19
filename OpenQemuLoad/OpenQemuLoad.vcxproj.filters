@@ -94,6 +94,15 @@
     <ClInclude Include="CalendarBar.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="PropertiesToolBar.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="AboutDlg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="OutlookBar.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="OpenQemuLoad.cpp">
@@ -115,6 +124,15 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="CalendarBar.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="PropertiesToolBar.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="AboutDlg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="OutlookBar.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
