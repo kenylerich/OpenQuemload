@@ -18,7 +18,7 @@ CCalendarBar::CCalendarBar()
 	m_nMyCalendarsY = 0;
 	nBorderSize = 10;
 	iconWidth = 16;
-	iconHeight = 16
+	iconHeight = 16;
 }
 
 CCalendarBar::~CCalendarBar()
@@ -126,7 +126,7 @@ void CCalendarBar::OnPaint()
 		ASSERT(bNameValid);
 		dc.DrawText(str, rectText, DT_VCENTER | DT_LEFT | DT_SINGLELINE);
 
-		CRect rectCalendar = rectClient;
+		rectCalendar = rectClient;
 		rectCalendar.top = rectMyCalendarsCaption.bottom + 5;
 		rectCalendar.bottom = rectCalendar.top + afxGlobalData.GetTextHeight(TRUE) * 3 / 2 - 5;
 		dc.FillSolidRect(rectCalendar, RGB(255, 255, 213));
